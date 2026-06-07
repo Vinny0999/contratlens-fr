@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { FileText, MessageSquare, FileSearch } from 'lucide-react'
 import axios from 'axios'
+import { FileSearch, FileText, MessageSquare, RefreshCw } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function DocumentsPage() {
   const [documents, setDocuments] = useState([])
@@ -65,7 +65,7 @@ export default function DocumentsPage() {
       ) : (
         <div style={{ display: 'grid', gap: '1rem' }}>
           {documents.map((doc) => (
-            <DocumentCard key={doc.id} document={doc} />
+            <DocumentCard key={doc.id} document={doc} onIndexed={fetchDocuments} />
           ))}
         </div>
       )}
@@ -73,7 +73,46 @@ export default function DocumentsPage() {
   )
 }
 
-function DocumentCard({ document }) {
+function DocumentCard({ document, onIndexed }) {
+  const [indexing, setIndexing] = useState(false)
+  const [error, setError] = useState(null)
+
+  const statusColors = {
+    uploaded: '#f59e0b',
+    processing: '#3b82f6',
+    indexed: '#10b981',
+    failed: '#ef4444',
+  }
+
+  const handleIndex = async () => {
+    setIndexing(true)
+    setError(null)
+    try {
+      await axios.post(`http://localhost:8000/api/v1/documents/${document.id}/index`)
+      // Poll until indexed or failed
+      const poll = setInterval(async () => {
+        try {
+          const res = await axios.get(`http://localhost:8000/api/v1/documents/${document.id}`)
+          if (res.data.status === 'indexed' || res.data.status === 'failed') {
+            clearInterval(poll)
+            setIndexing(false)
+            onIndexed()
+          }
+        } catch {
+          clearInterval(poll)
+          setIndexing(false)
+        }
+      }, 2000)
+    } catch (err) {
+      setError('Erreur lors de l\'indexation')
+      setIndexing(false)
+    }
+  }
+
+  const isIndexed = document.status === 'indexed'
+  const isFailed = document.status === 'failed'
+  const isProcessing = document.status === 'processing' || indexing
+
   return (
     <div style={{
       background: 'white',
@@ -82,21 +121,69 @@ function DocumentCard({ document }) {
       boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      flexWrap: 'wrap',
+      gap: '1rem'
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1 }}>
-        <FileText size={32} style={{ color: '#3b82f6' }} />
+        <FileText size={32} style={{ color: '#3b82f6', flexShrink: 0 }} />
         <div>
           <h3 style={{ fontWeight: '600', marginBottom: '0.25rem', color: '#1e293b' }}>
             {document.filename}
           </h3>
           <p style={{ fontSize: '0.875rem', color: '#64748b' }}>
-            {document.doc_type} • {document.status} • {new Date(document.upload_date).toLocaleDateString('fr-FR')}
+            {document.doc_type} •{' '}
+            <span style={{ color: statusColors[document.status] || '#64748b', fontWeight: 600 }}>
+              {document.status}
+            </span>
+            {document.num_pages && ` • ${document.num_pages} pages`}
+            {' • '}{new Date(document.upload_date).toLocaleDateString('fr-FR')}
           </p>
+          {error && <p style={{ fontSize: '0.8rem', color: '#ef4444', marginTop: '0.25rem' }}>{error}</p>}
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.5rem' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+        {!isIndexed && !isProcessing && (
+          <button
+            onClick={handleIndex}
+            disabled={isProcessing}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.5rem 1rem',
+              background: isFailed ? '#ef4444' : '#f59e0b',
+              color: 'white',
+              borderRadius: '0.375rem',
+              border: 'none',
+              fontSize: '0.875rem',
+              fontWeight: '600',
+              cursor: 'pointer'
+            }}
+          >
+            <RefreshCw size={16} />
+            {isFailed ? 'Réessayer' : 'Indexer'}
+          </button>
+        )}
+
+        {isProcessing && (
+          <span style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.5rem 1rem',
+            background: '#e0f2fe',
+            color: '#0369a1',
+            borderRadius: '0.375rem',
+            fontSize: '0.875rem',
+            fontWeight: '600'
+          }}>
+            <RefreshCw size={16} style={{ animation: 'spin 1s linear infinite' }} />
+            Indexation...
+          </span>
+        )}
+
         <Link
           to={`/chat/${document.id}`}
           style={{
@@ -104,18 +191,19 @@ function DocumentCard({ document }) {
             alignItems: 'center',
             gap: '0.5rem',
             padding: '0.5rem 1rem',
-            background: '#3b82f6',
+            background: isIndexed ? '#3b82f6' : '#cbd5e1',
             color: 'white',
             borderRadius: '0.375rem',
             textDecoration: 'none',
             fontSize: '0.875rem',
-            fontWeight: '600'
+            fontWeight: '600',
+            pointerEvents: isIndexed ? 'auto' : 'none'
           }}
         >
           <MessageSquare size={16} />
           Chat
         </Link>
-        
+
         <Link
           to={`/analysis/${document.id}`}
           style={{
@@ -123,12 +211,13 @@ function DocumentCard({ document }) {
             alignItems: 'center',
             gap: '0.5rem',
             padding: '0.5rem 1rem',
-            background: '#10b981',
+            background: isIndexed ? '#10b981' : '#cbd5e1',
             color: 'white',
             borderRadius: '0.375rem',
             textDecoration: 'none',
             fontSize: '0.875rem',
-            fontWeight: '600'
+            fontWeight: '600',
+            pointerEvents: isIndexed ? 'auto' : 'none'
           }}
         >
           <FileSearch size={16} />

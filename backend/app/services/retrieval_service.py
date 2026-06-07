@@ -13,11 +13,14 @@ class RetrievalService:
         self.collection = None
     
     def get_or_create_collection(self, collection_name: str = "contracts"):
-        """Get or create a ChromaDB collection."""
+        """Get or create a ChromaDB collection using cosine similarity."""
         if self.collection is None:
             self.collection = self.client.get_or_create_collection(
                 name=collection_name,
-                metadata={"description": "French contract embeddings"}
+                metadata={
+                    "description": "French contract embeddings",
+                    "hnsw:space": "cosine"  # cosine distance: 0=identical, 2=opposite
+                }
             )
         return self.collection
     
@@ -66,8 +69,9 @@ class RetrievalService:
         
         chunks_with_scores = []
         for i, doc_id in enumerate(results['ids'][0]):
-            score = 1 - results['distances'][0][i]  # Convert distance to similarity
-            
+            # Cosine distance: 0 = identical, 2 = opposite → similarity = 1 - distance
+            score = 1.0 - results['distances'][0][i]
+
             if score < settings.MIN_RELEVANCE_SCORE:
                 continue
             
