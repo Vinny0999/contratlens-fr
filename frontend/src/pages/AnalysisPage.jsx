@@ -27,10 +27,20 @@ export default function AnalysisPage() {
 
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-      <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#1e293b' }}>
+      <h1 style={{ 
+        fontSize: 'clamp(1.5rem, 4vw, 2rem)', 
+        fontWeight: 'bold', 
+        marginBottom: '0.5rem', 
+        color: '#1e293b' 
+      }}>
         Analyse de Contrat
       </h1>
-      <p style={{ color: '#64748b', marginBottom: '2rem', fontSize: '0.875rem' }}>
+      <p style={{ 
+        color: '#64748b', 
+        marginBottom: 'clamp(1.5rem, 4vw, 2rem)', 
+        fontSize: 'clamp(0.8rem, 2vw, 0.875rem)',
+        wordBreak: 'break-word'
+      }}>
         Document: {documentId}
       </p>
 
@@ -45,28 +55,41 @@ export default function AnalysisPage() {
 
       {!analysis ? (
         <div style={{
-          background: 'white', padding: '3rem', borderRadius: '0.75rem',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)', textAlign: 'center'
+          background: 'white', 
+          padding: 'clamp(2rem, 5vw, 3rem)', 
+          borderRadius: '0.75rem',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)', 
+          textAlign: 'center'
         }}>
-          <FileSearch size={48} style={{ color: '#3b82f6', margin: '0 auto 1rem', display: 'block' }} />
-          <p style={{ marginBottom: '2rem', color: '#64748b' }}>
+          <FileSearch size={window.innerWidth < 640 ? 40 : 48} style={{ color: '#3b82f6', margin: '0 auto 1rem', display: 'block' }} />
+          <p style={{ 
+            marginBottom: 'clamp(1.5rem, 4vw, 2rem)', 
+            color: '#64748b',
+            fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+            padding: '0 1rem'
+          }}>
             Lancer l'analyse structurée du contrat via le LLM local
           </p>
           <button
             onClick={runAnalysis}
             disabled={analyzing}
             style={{
-              background: '#3b82f6', color: 'white', padding: '1rem 2rem',
-              borderRadius: '0.5rem', border: 'none',
+              background: '#3b82f6', 
+              color: 'white', 
+              padding: 'clamp(0.875rem, 3vw, 1rem) clamp(1.5rem, 4vw, 2rem)',
+              borderRadius: '0.5rem', 
+              border: 'none',
               cursor: analyzing ? 'not-allowed' : 'pointer',
-              fontSize: '1rem', fontWeight: '600', opacity: analyzing ? 0.7 : 1
+              fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', 
+              fontWeight: '600', 
+              opacity: analyzing ? 0.7 : 1
             }}
           >
             {analyzing ? 'Analyse en cours… (peut prendre ~30s)' : 'Analyser le contrat'}
           </button>
         </div>
       ) : (
-        <div style={{ display: 'grid', gap: '1.5rem' }}>
+        <div style={{ display: 'grid', gap: 'clamp(1rem, 3vw, 1.5rem)' }}>
           {/* Score */}
           {analysis.qualification_score != null && (
             <div style={{
@@ -89,7 +112,7 @@ export default function AnalysisPage() {
             <p style={{ color: '#475569', lineHeight: 1.7, margin: 0 }}>{analysis.summary}</p>
           </AnalysisSection>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '1fr 1fr', gap: 'clamp(1rem, 3vw, 1.5rem)' }}>
             <AnalysisSection title="Type de contrat" icon={<CheckCircle size={22} />} color="#10b981">
               <p style={{ color: '#475569', margin: 0 }}>{analysis.contract_type || '—'}</p>
             </AnalysisSection>
@@ -169,12 +192,25 @@ export default function AnalysisPage() {
 function AnalysisSection({ title, icon, color, children }) {
   return (
     <div style={{
-      background: 'white', padding: '1.5rem', borderRadius: '0.75rem',
+      background: 'white', 
+      padding: 'clamp(1rem, 3vw, 1.5rem)', 
+      borderRadius: '0.75rem',
       boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: 'clamp(0.5rem, 2vw, 0.75rem)', 
+        marginBottom: 'clamp(0.75rem, 2vw, 1rem)',
+        flexWrap: 'wrap'
+      }}>
         <div style={{ color }}>{icon}</div>
-        <h2 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#1e293b', margin: 0 }}>{title}</h2>
+        <h2 style={{ 
+          fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', 
+          fontWeight: '600', 
+          color: '#1e293b', 
+          margin: 0 
+        }}>{title}</h2>
       </div>
       {children}
     </div>

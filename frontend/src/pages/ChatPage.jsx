@@ -58,19 +58,35 @@ export default function ChatPage() {
   }
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', height: 'calc(100vh - 200px)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ 
+      maxWidth: '900px', 
+      margin: '0 auto', 
+      height: 'calc(100vh - clamp(150px, 30vh, 200px))', 
+      display: 'flex', 
+      flexDirection: 'column' 
+    }}>
       {/* Header */}
       <div style={{
         background: 'white',
-        padding: '1.25rem 1.5rem',
+        padding: 'clamp(0.875rem, 3vw, 1.25rem) clamp(1rem, 4vw, 1.5rem)',
         borderRadius: '0.75rem 0.75rem 0 0',
         boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
         borderBottom: '1px solid #e2e8f0'
       }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#1e293b', margin: 0 }}>
+        <h1 style={{ 
+          fontSize: 'clamp(1.125rem, 4vw, 1.5rem)', 
+          fontWeight: 'bold', 
+          color: '#1e293b', 
+          margin: 0 
+        }}>
           Chat avec le contrat
         </h1>
-        <p style={{ color: '#64748b', fontSize: '0.8rem', marginTop: '0.25rem' }}>
+        <p style={{ 
+          color: '#64748b', 
+          fontSize: 'clamp(0.7rem, 2vw, 0.8rem)', 
+          marginTop: '0.25rem',
+          wordBreak: 'break-word'
+        }}>
           {documentId ? `Document: ${documentId}` : 'Base de connaissances complète'}
         </p>
       </div>
@@ -79,11 +95,11 @@ export default function ChatPage() {
       <div style={{
         flex: 1,
         background: 'white',
-        padding: '1.5rem',
+        padding: 'clamp(1rem, 3vw, 1.5rem)',
         overflowY: 'auto',
         display: 'flex',
         flexDirection: 'column',
-        gap: '1rem'
+        gap: 'clamp(0.75rem, 2vw, 1rem)'
       }}>
         {messages.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '3rem', color: '#94a3b8' }}>
@@ -118,12 +134,12 @@ export default function ChatPage() {
       {/* Input */}
       <div style={{
         background: 'white',
-        padding: '1.25rem 1.5rem',
+        padding: 'clamp(0.875rem, 3vw, 1.25rem) clamp(1rem, 4vw, 1.5rem)',
         borderRadius: '0 0 0.75rem 0.75rem',
         boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
         borderTop: '1px solid #e2e8f0'
       }}>
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', gap: 'clamp(0.5rem, 2vw, 0.75rem)', flexWrap: window.innerWidth < 640 ? 'wrap' : 'nowrap' }}>
           <input
             type="text"
             value={input}
@@ -133,10 +149,11 @@ export default function ChatPage() {
             disabled={loading}
             style={{
               flex: 1,
-              padding: '0.75rem 1rem',
+              minWidth: window.innerWidth < 640 ? '100%' : 'auto',
+              padding: 'clamp(0.625rem, 2vw, 0.75rem) clamp(0.75rem, 3vw, 1rem)',
               border: '1px solid #e2e8f0',
               borderRadius: '0.5rem',
-              fontSize: '1rem',
+              fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
               outline: 'none'
             }}
           />
@@ -146,7 +163,7 @@ export default function ChatPage() {
             style={{
               background: '#3b82f6',
               color: 'white',
-              padding: '0.75rem 1.5rem',
+              padding: 'clamp(0.625rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
               borderRadius: '0.5rem',
               border: 'none',
               cursor: loading || !input.trim() ? 'not-allowed' : 'pointer',
@@ -154,11 +171,14 @@ export default function ChatPage() {
               alignItems: 'center',
               gap: '0.5rem',
               opacity: loading || !input.trim() ? 0.5 : 1,
-              fontWeight: 600
+              fontWeight: 600,
+              fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+              width: window.innerWidth < 640 ? '100%' : 'auto',
+              justifyContent: 'center'
             }}
           >
-            <Send size={18} />
-            Envoyer
+            <Send size={window.innerWidth < 640 ? 16 : 18} />
+            <span style={{ display: window.innerWidth < 480 ? 'none' : 'inline' }}>Envoyer</span>
           </button>
         </div>
       </div>
@@ -172,26 +192,35 @@ function MessageBubble({ message }) {
   return (
     <div style={{
       display: 'flex',
-      gap: '1rem',
+      gap: 'clamp(0.75rem, 2vw, 1rem)',
       alignItems: 'flex-start',
       flexDirection: isUser ? 'row-reverse' : 'row'
     }}>
       <div style={{
-        width: '32px', height: '32px', borderRadius: '50%',
+        width: window.innerWidth < 640 ? '28px' : '32px', 
+        height: window.innerWidth < 640 ? '28px' : '32px', 
+        borderRadius: '50%',
         background: isUser ? '#3b82f6' : (message.isError ? '#ef4444' : '#10b981'),
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: 'white', flexShrink: 0
       }}>
-        {isUser ? <User size={18} /> : <Bot size={18} />}
+        {isUser ? <User size={window.innerWidth < 640 ? 14 : 18} /> : <Bot size={window.innerWidth < 640 ? 14 : 18} />}
       </div>
 
-      <div style={{ maxWidth: '75%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+      <div style={{ maxWidth: window.innerWidth < 640 ? '85%' : '75%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         <div style={{
           background: isUser ? '#eff6ff' : (message.isError ? '#fef2f2' : '#f0fdf4'),
-          padding: '1rem',
+          padding: 'clamp(0.75rem, 2vw, 1rem)',
           borderRadius: '0.75rem'
         }}>
-          <p style={{ color: '#1e293b', whiteSpace: 'pre-wrap', margin: 0, lineHeight: 1.6 }}>
+          <p style={{ 
+            color: '#1e293b', 
+            whiteSpace: 'pre-wrap', 
+            margin: 0, 
+            lineHeight: 1.6,
+            fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+            wordBreak: 'break-word'
+          }}>
             {message.content}
           </p>
         </div>
@@ -204,22 +233,22 @@ function MessageBubble({ message }) {
                 background: '#f8fafc',
                 border: '1px solid #e2e8f0',
                 borderRadius: '0.5rem',
-                padding: '0.6rem 0.875rem',
-                fontSize: '0.8rem',
+                padding: 'clamp(0.5rem, 1.5vw, 0.6rem) clamp(0.625rem, 2vw, 0.875rem)',
+                fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
                 color: '#475569'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.25rem' }}>
-                  <BookOpen size={12} style={{ color: '#3b82f6' }} />
-                  <span style={{ fontWeight: 600, color: '#3b82f6' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.25rem', flexWrap: 'wrap' }}>
+                  <BookOpen size={12} style={{ color: '#3b82f6', flexShrink: 0 }} />
+                  <span style={{ fontWeight: 600, color: '#3b82f6', flex: '1 1 auto' }}>
                     Source {i + 1}
                     {citation.section_title && ` · ${citation.section_title}`}
                     {citation.page_number && ` · Page ${citation.page_number}`}
                   </span>
-                  <span style={{ marginLeft: 'auto', color: '#94a3b8' }}>
+                  <span style={{ color: '#94a3b8', fontSize: 'clamp(0.65rem, 1.8vw, 0.75rem)', whiteSpace: 'nowrap' }}>
                     {Math.round((citation.relevance_score || 0) * 100)}% pertinence
                   </span>
                 </div>
-                <p style={{ margin: 0, fontStyle: 'italic', color: '#64748b' }}>
+                <p style={{ margin: 0, fontStyle: 'italic', color: '#64748b', wordBreak: 'break-word' }}>
                   "{citation.excerpt}"
                 </p>
               </div>
@@ -229,7 +258,7 @@ function MessageBubble({ message }) {
 
         {/* Confidence */}
         {!isUser && message.confidence !== undefined && message.confidence > 0 && (
-          <div style={{ fontSize: '0.75rem', color: '#94a3b8', paddingLeft: '0.25rem' }}>
+          <div style={{ fontSize: 'clamp(0.7rem, 2vw, 0.75rem)', color: '#94a3b8', paddingLeft: '0.25rem' }}>
             Confiance: {Math.round(message.confidence * 100)}%
           </div>
         )}

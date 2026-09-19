@@ -55,40 +55,52 @@ export default function UploadPage() {
         background: 'rgba(0, 212, 255, 0.1)',
         border: '1px solid rgba(0, 212, 255, 0.3)',
         borderRadius: '1rem',
-        padding: '1.25rem 1.5rem',
-        marginBottom: '2rem',
+        padding: 'clamp(1rem, 3vw, 1.25rem) clamp(1rem, 4vw, 1.5rem)',
+        marginBottom: 'clamp(1.5rem, 4vw, 2rem)',
         display: 'flex',
         alignItems: 'flex-start',
-        gap: '1rem',
-        animation: 'fadeIn 0.5s ease-out'
+        gap: 'clamp(0.75rem, 2vw, 1rem)',
+        animation: 'fadeIn 0.5s ease-out',
+        flexWrap: 'wrap'
       }}>
-        <Key size={24} style={{ color: '#00d4ff', flexShrink: 0, marginTop: '0.125rem' }} />
-        <div>
+        <Key size={window.innerWidth < 640 ? 20 : 24} style={{ color: '#00d4ff', flexShrink: 0, marginTop: '0.125rem' }} />
+        <div style={{ flex: 1, minWidth: '200px' }}>
           <h3 style={{ 
             color: '#00d4ff', 
-            fontSize: '1.0625rem', 
+            fontSize: 'clamp(0.95rem, 2.5vw, 1.0625rem)', 
             fontWeight: 700,
             marginBottom: '0.5rem'
           }}>
             Configuration requise
           </h3>
-          <p style={{ color: '#b0b0b0', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '0.75rem' }}>
+          <p style={{ 
+            color: '#b0b0b0', 
+            fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', 
+            lineHeight: 1.6, 
+            marginBottom: '0.75rem' 
+          }}>
             Pour analyser vos documents, vous devez configurer une clé API LLM:
           </p>
-          <ul style={{ color: '#b0b0b0', fontSize: '0.9rem', lineHeight: 1.7, paddingLeft: '1.5rem', margin: 0 }}>
-            <li><strong style={{ color: '#00ff9d' }}>OpenAI:</strong> Ajoutez <code>OPENAI_API_KEY</code> dans <code>backend/.env</code></li>
-            <li><strong style={{ color: '#00ff9d' }}>Google AI:</strong> Ajoutez <code>GOOGLE_API_KEY</code> dans <code>backend/.env</code></li>
+          <ul style={{ 
+            color: '#b0b0b0', 
+            fontSize: 'clamp(0.8rem, 2vw, 0.9rem)', 
+            lineHeight: 1.7, 
+            paddingLeft: 'clamp(1rem, 3vw, 1.5rem)', 
+            margin: 0 
+          }}>
+            <li style={{ marginBottom: '0.25rem' }}><strong style={{ color: '#00ff9d' }}>OpenAI:</strong> Ajoutez <code>OPENAI_API_KEY</code> dans <code>backend/.env</code></li>
+            <li style={{ marginBottom: '0.25rem' }}><strong style={{ color: '#00ff9d' }}>Google AI:</strong> Ajoutez <code>GOOGLE_API_KEY</code> dans <code>backend/.env</code></li>
             <li><strong style={{ color: '#00ff9d' }}>Ollama (Local):</strong> Installez et démarrez Ollama localement (gratuit)</li>
           </ul>
         </div>
       </div>
       
       {/* Header */}
-      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 5vw, 3rem)' }}>
         <h1 style={{ 
-          fontSize: '2.5rem', 
+          fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', 
           fontWeight: 900, 
-          marginBottom: '1rem',
+          marginBottom: 'clamp(0.75rem, 2vw, 1rem)',
           background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
@@ -96,7 +108,11 @@ export default function UploadPage() {
         }}>
           Télécharger un Contrat
         </h1>
-        <p style={{ fontSize: '1.125rem', color: '#b0b0b0' }}>
+        <p style={{ 
+          fontSize: 'clamp(0.95rem, 3vw, 1.125rem)', 
+          color: '#b0b0b0',
+          padding: '0 1rem'
+        }}>
           Importez votre contrat PDF ou DOCX pour commencer l'analyse
         </p>
       </div>
@@ -105,7 +121,7 @@ export default function UploadPage() {
       <div style={{
         background: 'rgba(0, 255, 157, 0.05)',
         border: '1px solid rgba(0, 255, 157, 0.2)',
-        padding: '3rem',
+        padding: 'clamp(2rem, 5vw, 3rem)',
         borderRadius: '1.5rem',
         boxShadow: '0 0 60px rgba(0, 255, 157, 0.1)',
         position: 'relative',
@@ -131,7 +147,7 @@ export default function UploadPage() {
                 style={{
                   border: dragActive ? '3px dashed #00ff9d' : '3px dashed rgba(16, 185, 129, 0.3)',
                   borderRadius: '1rem',
-                  padding: '4rem 2rem',
+                  padding: 'clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem)',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   background: dragActive ? 'rgba(16, 185, 129, 0.1)' : 'transparent'
                 }}
@@ -154,9 +170,9 @@ export default function UploadPage() {
                 }}
               >
                 <div style={{
-                  width: '80px',
-                  height: '80px',
-                  margin: '0 auto 1.5rem',
+                  width: 'clamp(60px, 15vw, 80px)',
+                  height: 'clamp(60px, 15vw, 80px)',
+                  margin: '0 auto clamp(1rem, 3vw, 1.5rem)',
                   background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
                   borderRadius: '1.25rem',
                   display: 'flex',
@@ -165,11 +181,11 @@ export default function UploadPage() {
                   boxShadow: '0 0 40px rgba(16, 185, 129, 0.4)',
                   animation: dragActive ? 'float 2s ease-in-out infinite' : 'none'
                 }}>
-                  <Upload size={40} style={{ color: '#000' }} />
+                  <Upload size={window.innerWidth < 640 ? 32 : 40} style={{ color: '#000' }} />
                 </div>
                 
                 <p style={{ 
-                  fontSize: '1.375rem', 
+                  fontSize: 'clamp(1.125rem, 3vw, 1.375rem)', 
                   marginBottom: '0.75rem',
                   fontWeight: 700,
                   color: '#ffffff'
@@ -178,8 +194,8 @@ export default function UploadPage() {
                 </p>
                 <p style={{ 
                   color: '#b0b0b0', 
-                  fontSize: '1rem',
-                  marginBottom: '1.5rem'
+                  fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+                  marginBottom: 'clamp(1rem, 3vw, 1.5rem)'
                 }}>
                   ou cliquez pour parcourir
                 </p>
@@ -187,10 +203,10 @@ export default function UploadPage() {
                   display: 'inline-block',
                   background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
                   color: '#000',
-                  padding: '0.875rem 2rem',
+                  padding: 'clamp(0.75rem, 2vw, 0.875rem) clamp(1.5rem, 4vw, 2rem)',
                   borderRadius: '0.75rem',
                   fontWeight: 700,
-                  fontSize: '1rem',
+                  fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
                   boxShadow: '0 0 30px rgba(16, 185, 129, 0.4)',
                   transition: 'all 0.3s'
                 }}
@@ -207,8 +223,8 @@ export default function UploadPage() {
                 </div>
                 <p style={{ 
                   color: '#909090', 
-                  fontSize: '0.875rem',
-                  marginTop: '1.5rem',
+                  fontSize: 'clamp(0.8rem, 2vw, 0.875rem)',
+                  marginTop: 'clamp(1rem, 3vw, 1.5rem)',
                   fontWeight: 500
                 }}>
                   PDF ou DOCX • Maximum 50 MB
@@ -226,14 +242,14 @@ export default function UploadPage() {
               {/* File Preview */}
               <div style={{
                 background: 'rgba(16, 185, 129, 0.1)',
-                padding: '2rem',
+                padding: 'clamp(1.5rem, 4vw, 2rem)',
                 borderRadius: '1rem',
-                marginBottom: '2rem',
+                marginBottom: 'clamp(1.5rem, 4vw, 2rem)',
                 border: '2px solid rgba(16, 185, 129, 0.3)'
               }}>
                 <div style={{
-                  width: '72px',
-                  height: '72px',
+                  width: 'clamp(56px, 15vw, 72px)',
+                  height: 'clamp(56px, 15vw, 72px)',
                   margin: '0 auto 1rem',
                   background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
                   borderRadius: '1rem',
@@ -242,19 +258,21 @@ export default function UploadPage() {
                   justifyContent: 'center',
                   boxShadow: '0 0 40px rgba(16, 185, 129, 0.4)'
                 }}>
-                  <FileText size={36} style={{ color: '#000' }} />
+                  <FileText size={window.innerWidth < 640 ? 28 : 36} style={{ color: '#000' }} />
                 </div>
                 <p style={{ 
-                  fontSize: '1.25rem', 
+                  fontSize: 'clamp(1rem, 3vw, 1.25rem)', 
                   marginBottom: '0.5rem',
                   fontWeight: 700,
-                  color: '#ffffff'
+                  color: '#ffffff',
+                  wordBreak: 'break-word',
+                  padding: '0 0.5rem'
                 }}>
                   {file.name}
                 </p>
                 <p style={{ 
                   color: '#b0b0b0', 
-                  fontSize: '0.95rem',
+                  fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
                   fontWeight: 500
                 }}>
                   {(file.size / 1024 / 1024).toFixed(2)} MB
@@ -262,7 +280,7 @@ export default function UploadPage() {
               </div>
               
               {/* Actions */}
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', gap: 'clamp(0.75rem, 2vw, 1rem)', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <button
                   onClick={handleUpload}
                   disabled={uploading}
@@ -272,11 +290,11 @@ export default function UploadPage() {
                     gap: '0.75rem',
                     background: uploading ? '#909090' : 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
                     color: uploading ? '#d1d5db' : '#000',
-                    padding: '1rem 2.5rem',
+                    padding: 'clamp(0.875rem, 3vw, 1rem) clamp(1.75rem, 5vw, 2.5rem)',
                     borderRadius: '0.875rem',
                     border: 'none',
                     cursor: uploading ? 'not-allowed' : 'pointer',
-                    fontSize: '1.0625rem',
+                    fontSize: 'clamp(0.95rem, 2.5vw, 1.0625rem)',
                     fontWeight: 800,
                     boxShadow: uploading ? 'none' : '0 0 40px rgba(16, 185, 129, 0.5)',
                     transition: 'all 0.3s'
@@ -296,12 +314,12 @@ export default function UploadPage() {
                 >
                   {uploading ? (
                     <>
-                      <Loader2 size={20} style={{ animation: 'spin 1s linear infinite' }} />
+                      <Loader2 size={window.innerWidth < 640 ? 18 : 20} style={{ animation: 'spin 1s linear infinite' }} />
                       Téléchargement...
                     </>
                   ) : (
                     <>
-                      <Upload size={20} />
+                      <Upload size={window.innerWidth < 640 ? 18 : 20} />
                       Télécharger
                     </>
                   )}
@@ -313,11 +331,11 @@ export default function UploadPage() {
                   style={{
                     background: 'rgba(16, 185, 129, 0.1)',
                     color: '#00ff9d',
-                    padding: '1rem 2rem',
+                    padding: 'clamp(0.875rem, 3vw, 1rem) clamp(1.5rem, 4vw, 2rem)',
                     borderRadius: '0.875rem',
                     border: '1px solid rgba(16, 185, 129, 0.3)',
                     cursor: uploading ? 'not-allowed' : 'pointer',
-                    fontSize: '1.0625rem',
+                    fontSize: 'clamp(0.95rem, 2.5vw, 1.0625rem)',
                     fontWeight: 700,
                     transition: 'all 0.3s'
                   }}

@@ -199,3 +199,34 @@ textarea:focus-visible {
 .scroll-animate:nth-child(2) { transition-delay: 0.2s; }
 .scroll-animate:nth-child(3) { transition-delay: 0.3s; }
 .scroll-animate:nth-child(4) { transition-delay: 0.4s; }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  /* Prevent horizontal scroll */
+  body, #root {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Hide particle network on mobile for performance */
+  #particle-canvas {
+    display: none;
+  }
+
+  /* Adjust scrollbar for mobile */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+  #particle-canvas {
+    opacity: 0.5; /* Reduce particle intensity on tablets */
+  }
+}

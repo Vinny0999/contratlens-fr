@@ -41,9 +41,9 @@ export default function DocumentsPage() {
 
   return (
     <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
-      <div style={{ marginBottom: '2rem' }}>
+      <div style={{ marginBottom: 'clamp(1.5rem, 4vw, 2rem)' }}>
         <h1 style={{ 
-          fontSize: '2.5rem', 
+          fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', 
           fontWeight: 900, 
           marginBottom: '0.75rem',
           background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
@@ -53,7 +53,7 @@ export default function DocumentsPage() {
         }}>
           Mes Documents
         </h1>
-        <p style={{ color: '#b0b0b0', fontSize: '1.0625rem' }}>
+        <p style={{ color: '#b0b0b0', fontSize: 'clamp(0.95rem, 2.5vw, 1.0625rem)' }}>
           {documents.length} document(s) téléchargé(s)
         </p>
       </div>
@@ -157,13 +157,13 @@ function DocumentCard({ document, onIndexed }) {
     <div style={{
       background: 'rgba(0, 255, 157, 0.05)',
       border: '1px solid rgba(0, 255, 157, 0.2)',
-      padding: '1.5rem',
+      padding: 'clamp(1rem, 3vw, 1.5rem)',
       borderRadius: '1.25rem',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       flexWrap: 'wrap',
-      gap: '1.25rem',
+      gap: 'clamp(1rem, 3vw, 1.25rem)',
       boxShadow: '0 0 30px rgba(0, 255, 157, 0.1)',
       transition: 'all 0.3s',
       position: 'relative',
@@ -190,10 +190,10 @@ function DocumentCard({ document, onIndexed }) {
         pointerEvents: 'none'
       }}></div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flex: 1, minWidth: '250px', position: 'relative' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.875rem, 3vw, 1.25rem)', flex: 1, minWidth: '200px', position: 'relative' }}>
         <div style={{
           background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
-          padding: '0.875rem',
+          padding: 'clamp(0.625rem, 2vw, 0.875rem)',
           borderRadius: '0.875rem',
           display: 'flex',
           alignItems: 'center',
@@ -201,19 +201,20 @@ function DocumentCard({ document, onIndexed }) {
           boxShadow: '0 0 20px rgba(0, 255, 157, 0.3)',
           flexShrink: 0
         }}>
-          <FileText size={28} style={{ color: '#050811' }} />
+          <FileText size={window.innerWidth < 640 ? 20 : 28} style={{ color: '#050811' }} />
         </div>
         <div>
           <h3 style={{ 
             fontWeight: 700, 
             marginBottom: '0.5rem', 
             color: '#ffffff',
-            fontSize: '1.0625rem'
+            fontSize: 'clamp(0.95rem, 2.5vw, 1.0625rem)',
+            wordBreak: 'break-word'
           }}>
             {document.filename}
           </h3>
           <div style={{ 
-            fontSize: '0.875rem', 
+            fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', 
             color: '#b0b0b0',
             display: 'flex',
             alignItems: 'center',
@@ -251,7 +252,7 @@ function DocumentCard({ document, onIndexed }) {
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', position: 'relative' }}>
+      <div style={{ display: 'flex', gap: 'clamp(0.5rem, 2vw, 0.75rem)', flexWrap: 'wrap', position: 'relative', justifyContent: window.innerWidth < 640 ? 'flex-start' : 'flex-end', width: window.innerWidth < 640 ? '100%' : 'auto' }}>
         {!isIndexed && !isProcessing && (
           <button
             onClick={handleIndex}
@@ -259,12 +260,12 @@ function DocumentCard({ document, onIndexed }) {
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
-              padding: '0.625rem 1.25rem',
+              padding: 'clamp(0.5rem, 1.5vw, 0.625rem) clamp(0.875rem, 3vw, 1.25rem)',
               background: isFailed ? 'rgba(239, 68, 68, 0.15)' : 'rgba(245, 158, 11, 0.15)',
               color: isFailed ? '#ef4444' : '#f59e0b',
               border: `1px solid ${isFailed ? 'rgba(239, 68, 68, 0.3)' : 'rgba(245, 158, 11, 0.3)'}`,
               borderRadius: '0.625rem',
-              fontSize: '0.875rem',
+              fontSize: 'clamp(0.8rem, 2vw, 0.875rem)',
               fontWeight: 700,
               cursor: 'pointer',
               transition: 'all 0.3s'
@@ -276,7 +277,7 @@ function DocumentCard({ document, onIndexed }) {
               e.currentTarget.style.background = isFailed ? 'rgba(239, 68, 68, 0.15)' : 'rgba(245, 158, 11, 0.15)'
             }}
           >
-            <RefreshCw size={16} />
+            <RefreshCw size={window.innerWidth < 640 ? 14 : 16} />
             {isFailed ? 'Réessayer' : 'Indexer'}
           </button>
         )}
@@ -286,15 +287,15 @@ function DocumentCard({ document, onIndexed }) {
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            padding: '0.625rem 1.25rem',
+            padding: 'clamp(0.5rem, 1.5vw, 0.625rem) clamp(0.875rem, 3vw, 1.25rem)',
             background: 'rgba(0, 212, 255, 0.15)',
             color: '#00d4ff',
             border: '1px solid rgba(0, 212, 255, 0.3)',
             borderRadius: '0.625rem',
-            fontSize: '0.875rem',
+            fontSize: 'clamp(0.8rem, 2vw, 0.875rem)',
             fontWeight: 700
           }}>
-            <RefreshCw size={16} style={{ animation: 'spin 1s linear infinite' }} />
+            <RefreshCw size={window.innerWidth < 640 ? 14 : 16} style={{ animation: 'spin 1s linear infinite' }} />
             Indexation...
           </span>
         )}
@@ -305,13 +306,13 @@ function DocumentCard({ document, onIndexed }) {
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            padding: '0.625rem 1.25rem',
+            padding: 'clamp(0.5rem, 1.5vw, 0.625rem) clamp(0.875rem, 3vw, 1.25rem)',
             background: isIndexed ? 'rgba(0, 212, 255, 0.15)' : 'rgba(128, 128, 128, 0.15)',
             color: isIndexed ? '#00d4ff' : '#808080',
             border: `1px solid ${isIndexed ? 'rgba(0, 212, 255, 0.3)' : 'rgba(128, 128, 128, 0.3)'}`,
             borderRadius: '0.625rem',
             textDecoration: 'none',
-            fontSize: '0.875rem',
+            fontSize: 'clamp(0.8rem, 2vw, 0.875rem)',
             fontWeight: 700,
             pointerEvents: isIndexed ? 'auto' : 'none',
             transition: 'all 0.3s'
@@ -327,7 +328,7 @@ function DocumentCard({ document, onIndexed }) {
             }
           }}
         >
-          <MessageSquare size={16} />
+          <MessageSquare size={window.innerWidth < 640 ? 14 : 16} />
           Chat
         </Link>
 
@@ -337,13 +338,13 @@ function DocumentCard({ document, onIndexed }) {
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            padding: '0.625rem 1.25rem',
+            padding: 'clamp(0.5rem, 1.5vw, 0.625rem) clamp(0.875rem, 3vw, 1.25rem)',
             background: isIndexed ? 'rgba(0, 255, 157, 0.15)' : 'rgba(128, 128, 128, 0.15)',
             color: isIndexed ? '#00ff9d' : '#808080',
             border: `1px solid ${isIndexed ? 'rgba(0, 255, 157, 0.3)' : 'rgba(128, 128, 128, 0.3)'}`,
             borderRadius: '0.625rem',
             textDecoration: 'none',
-            fontSize: '0.875rem',
+            fontSize: 'clamp(0.8rem, 2vw, 0.875rem)',
             fontWeight: 700,
             pointerEvents: isIndexed ? 'auto' : 'none',
             transition: 'all 0.3s'
@@ -359,7 +360,7 @@ function DocumentCard({ document, onIndexed }) {
             }
           }}
         >
-          <FileSearch size={16} />
+          <FileSearch size={window.innerWidth < 640 ? 14 : 16} />
           Analyser
         </Link>
       </div>

@@ -33,8 +33,8 @@ export default function HomePage() {
       {/* Hero Section */}
       <div style={{ 
         textAlign: 'center', 
-        marginBottom: '5rem',
-        padding: '3rem 1rem',
+        marginBottom: 'clamp(2.5rem, 8vw, 5rem)',
+        padding: 'clamp(1.5rem, 5vw, 3rem) clamp(0.5rem, 3vw, 1rem)',
         position: 'relative'
       }}>
         {/* Animated background glow */}
@@ -77,18 +77,19 @@ export default function HomePage() {
         </div>
         
         <h1 style={{ 
-          fontSize: '4.5rem', 
+          fontSize: 'clamp(2rem, 8vw, 4.5rem)', 
           fontWeight: 900, 
           background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
-          marginBottom: '1.5rem',
+          marginBottom: 'clamp(1rem, 3vw, 1.5rem)',
           lineHeight: 1.1,
           letterSpacing: '-0.03em',
           position: 'relative',
           zIndex: 1,
-          textShadow: '0 0 80px rgba(16, 185, 129, 0.3)'
+          textShadow: '0 0 80px rgba(16, 185, 129, 0.3)',
+          padding: '0 0.5rem'
         }}>
           Analysez vos contrats<br />
           <span style={{
@@ -99,20 +100,21 @@ export default function HomePage() {
         </h1>
         
         <p style={{ 
-          fontSize: '1.25rem', 
+          fontSize: 'clamp(0.95rem, 3vw, 1.25rem)', 
           color: '#b0b0b0',
           maxWidth: '700px', 
-          margin: '0 auto 3rem',
+          margin: '0 auto clamp(2rem, 5vw, 3rem)',
           lineHeight: 1.7,
           fontWeight: 400,
           position: 'relative',
-          zIndex: 1
+          zIndex: 1,
+          padding: '0 1rem'
         }}>
           Assistant d'analyse de contrats français utilisant RAG et LLM.
           Téléchargez vos documents, posez des questions, obtenez des réponses précises avec citations.
         </p>
 
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
+        <div style={{ display: 'flex', gap: 'clamp(0.75rem, 3vw, 1rem)', justifyContent: 'center', flexWrap: 'wrap', position: 'relative', zIndex: 1, padding: '0 0.5rem' }}>
           <Link
             to="/upload"
             style={{
@@ -121,10 +123,10 @@ export default function HomePage() {
               gap: '0.75rem',
               background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
               color: '#000',
-              padding: '1.25rem 2.75rem',
+              padding: 'clamp(0.875rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.75rem)',
               borderRadius: '1rem',
               textDecoration: 'none',
-              fontSize: '1.125rem',
+              fontSize: 'clamp(0.95rem, 3vw, 1.125rem)',
               fontWeight: 800,
               boxShadow: '0 0 40px rgba(16, 185, 129, 0.4), 0 10px 30px -5px rgba(0, 0, 0, 0.5)',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -141,7 +143,7 @@ export default function HomePage() {
               e.currentTarget.style.boxShadow = '0 0 40px rgba(16, 185, 129, 0.4), 0 10px 30px -5px rgba(0, 0, 0, 0.5)'
             }}
           >
-            <Upload size={22} />
+            <Upload size={window.innerWidth < 768 ? 18 : 22} />
             Commencer maintenant
           </Link>
           
@@ -153,10 +155,10 @@ export default function HomePage() {
               gap: '0.75rem',
               background: 'rgba(16, 185, 129, 0.1)',
               color: '#00ff9d',
-              padding: '1.25rem 2.75rem',
+              padding: 'clamp(0.875rem, 3vw, 1.25rem) clamp(1.5rem, 5vw, 2.75rem)',
               borderRadius: '1rem',
               textDecoration: 'none',
-              fontSize: '1.125rem',
+              fontSize: 'clamp(0.95rem, 3vw, 1.125rem)',
               fontWeight: 800,
               boxShadow: '0 0 30px rgba(16, 185, 129, 0.2)',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -181,9 +183,9 @@ export default function HomePage() {
       {/* Features Grid */}
       <div ref={featuresRef} style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-        gap: '1.5rem', 
-        marginBottom: '5rem' 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', 
+        gap: 'clamp(1rem, 3vw, 1.5rem)', 
+        marginBottom: 'clamp(2.5rem, 8vw, 5rem)' 
       }}>
         <FeatureCard
           icon={<Upload size={28} />}
@@ -212,9 +214,9 @@ export default function HomePage() {
         background: 'rgba(16, 185, 129, 0.05)',
         border: '1px solid rgba(16, 185, 129, 0.2)',
         borderRadius: '1.5rem',
-        padding: '3rem 2rem',
+        padding: 'clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem)',
         boxShadow: '0 0 60px rgba(16, 185, 129, 0.1)',
-        marginBottom: '5rem',
+        marginBottom: 'clamp(2.5rem, 8vw, 5rem)',
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -232,8 +234,8 @@ export default function HomePage() {
 
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-          gap: '2rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(150px, 100%), 1fr))', 
+          gap: 'clamp(1rem, 4vw, 2rem)',
           textAlign: 'center',
           position: 'relative',
           zIndex: 1
@@ -250,7 +252,7 @@ export default function HomePage() {
         background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.1) 100%)',
         border: '1px solid rgba(16, 185, 129, 0.3)',
         borderRadius: '1.5rem',
-        padding: '4rem 2rem',
+        padding: 'clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem)',
         textAlign: 'center',
         boxShadow: '0 0 80px rgba(16, 185, 129, 0.2)',
         position: 'relative',
@@ -279,26 +281,28 @@ export default function HomePage() {
         }}></div>
 
         <h2 style={{ 
-          fontSize: '2.5rem', 
+          fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', 
           fontWeight: 800, 
           background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
-          marginBottom: '1rem',
+          marginBottom: 'clamp(0.75rem, 2vw, 1rem)',
           position: 'relative',
           zIndex: 1,
-          letterSpacing: '-0.02em'
+          letterSpacing: '-0.02em',
+          padding: '0 0.5rem'
         }}>
           Prêt à analyser vos contrats ?
         </h2>
         <p style={{ 
-          fontSize: '1.125rem', 
+          fontSize: 'clamp(0.95rem, 3vw, 1.125rem)', 
           color: '#b0b0b0',
-          marginBottom: '2.5rem',
+          marginBottom: 'clamp(1.5rem, 4vw, 2.5rem)',
           maxWidth: '600px',
-          margin: '0 auto 2.5rem',
+          margin: '0 auto clamp(1.5rem, 4vw, 2.5rem)',
           position: 'relative',
-          zIndex: 1
+          zIndex: 1,
+          padding: '0 1rem'
         }}>
           Gagnez du temps et réduisez les risques avec notre assistant IA
         </p>
@@ -310,10 +314,10 @@ export default function HomePage() {
             gap: '0.75rem',
             background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
             color: '#000',
-            padding: '1.125rem 2.5rem',
+            padding: 'clamp(0.875rem, 3vw, 1.125rem) clamp(1.5rem, 5vw, 2.5rem)',
             borderRadius: '1rem',
             textDecoration: 'none',
-            fontSize: '1.125rem',
+            fontSize: 'clamp(0.95rem, 3vw, 1.125rem)',
             fontWeight: 800,
             boxShadow: '0 0 40px rgba(16, 185, 129, 0.5)',
             transition: 'all 0.3s',
@@ -329,7 +333,7 @@ export default function HomePage() {
             e.currentTarget.style.boxShadow = '0 0 40px rgba(16, 185, 129, 0.5)'
           }}
         >
-          <Upload size={22} />
+          <Upload size={window.innerWidth < 768 ? 18 : 22} />
           Télécharger un contrat
         </Link>
       </div>
@@ -342,7 +346,7 @@ function FeatureCard({ icon, title, description }) {
     <div className="scroll-animate" style={{
       background: 'rgba(16, 185, 129, 0.05)',
       border: '1px solid rgba(16, 185, 129, 0.2)',
-      padding: '2rem',
+      padding: 'clamp(1.5rem, 4vw, 2rem)',
       borderRadius: '1.25rem',
       boxShadow: '0 0 30px rgba(16, 185, 129, 0.1)',
       textAlign: 'center',
@@ -377,13 +381,13 @@ function FeatureCard({ icon, title, description }) {
 
       <div style={{ 
         background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
-        width: '72px',
-        height: '72px',
+        width: 'clamp(56px, 15vw, 72px)',
+        height: 'clamp(56px, 15vw, 72px)',
         borderRadius: '1.25rem',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: '0 auto 1.5rem',
+        margin: '0 auto clamp(1rem, 3vw, 1.5rem)',
         boxShadow: '0 0 30px rgba(16, 185, 129, 0.4)',
         position: 'relative',
         zIndex: 1
@@ -393,7 +397,7 @@ function FeatureCard({ icon, title, description }) {
         </div>
       </div>
       <h3 style={{ 
-        fontSize: '1.25rem', 
+        fontSize: 'clamp(1rem, 3vw, 1.25rem)', 
         fontWeight: 700, 
         marginBottom: '0.75rem', 
         color: '#ffffff',
@@ -403,7 +407,13 @@ function FeatureCard({ icon, title, description }) {
       }}>
         {title}
       </h3>
-      <p style={{ color: '#b0b0b0', lineHeight: 1.6, fontSize: '0.95rem', position: 'relative', zIndex: 1 }}>
+      <p style={{ 
+        color: '#b0b0b0', 
+        lineHeight: 1.6, 
+        fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)', 
+        position: 'relative', 
+        zIndex: 1
+      }}>
         {description}
       </p>
     </div>
@@ -422,7 +432,7 @@ function StatCard({ icon, value, label }) {
         {icon}
       </div>
       <div style={{ 
-        fontSize: '2.5rem', 
+        fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', 
         fontWeight: 900, 
         background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
         WebkitBackgroundClip: 'text',
@@ -432,7 +442,11 @@ function StatCard({ icon, value, label }) {
       }}>
         {value}
       </div>
-      <div style={{ fontSize: '0.95rem', color: '#b0b0b0', fontWeight: 600 }}>
+      <div style={{ 
+        fontSize: 'clamp(0.8rem, 2.5vw, 0.95rem)', 
+        color: '#b0b0b0', 
+        fontWeight: 600
+      }}>
         {label}
       </div>
     </div>
