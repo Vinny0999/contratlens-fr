@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Upload, FileText, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { Upload, FileText, CheckCircle, AlertCircle, Loader2, Info, Key } from 'lucide-react'
 import axios from 'axios'
 
 export default function UploadPage() {
@@ -50,31 +50,64 @@ export default function UploadPage() {
 
   return (
     <div className="upload-container scroll-animate" style={{ maxWidth: '900px', margin: '0 auto' }}>
+      {/* API Key Reminder */}
+      <div style={{
+        background: 'rgba(0, 212, 255, 0.1)',
+        border: '1px solid rgba(0, 212, 255, 0.3)',
+        borderRadius: '1rem',
+        padding: '1.25rem 1.5rem',
+        marginBottom: '2rem',
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '1rem',
+        animation: 'fadeIn 0.5s ease-out'
+      }}>
+        <Key size={24} style={{ color: '#00d4ff', flexShrink: 0, marginTop: '0.125rem' }} />
+        <div>
+          <h3 style={{ 
+            color: '#00d4ff', 
+            fontSize: '1.0625rem', 
+            fontWeight: 700,
+            marginBottom: '0.5rem'
+          }}>
+            Configuration requise
+          </h3>
+          <p style={{ color: '#8b92b0', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '0.75rem' }}>
+            Pour analyser vos documents, vous devez configurer une clé API LLM:
+          </p>
+          <ul style={{ color: '#8b92b0', fontSize: '0.9rem', lineHeight: 1.7, paddingLeft: '1.5rem', margin: 0 }}>
+            <li><strong style={{ color: '#00ff9d' }}>OpenAI:</strong> Ajoutez <code>OPENAI_API_KEY</code> dans <code>backend/.env</code></li>
+            <li><strong style={{ color: '#00ff9d' }}>Google AI:</strong> Ajoutez <code>GOOGLE_API_KEY</code> dans <code>backend/.env</code></li>
+            <li><strong style={{ color: '#00ff9d' }}>Ollama (Local):</strong> Installez et démarrez Ollama localement (gratuit)</li>
+          </ul>
+        </div>
+      </div>
+      
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <h1 style={{ 
           fontSize: '2.5rem', 
           fontWeight: 900, 
           marginBottom: '1rem',
-          background: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+          background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           letterSpacing: '-0.02em'
         }}>
           Télécharger un Contrat
         </h1>
-        <p style={{ fontSize: '1.125rem', color: '#9ca3af' }}>
+        <p style={{ fontSize: '1.125rem', color: '#8b92b0' }}>
           Importez votre contrat PDF ou DOCX pour commencer l'analyse
         </p>
       </div>
 
       {/* Upload Box */}
       <div style={{
-        background: 'rgba(16, 185, 129, 0.05)',
-        border: '1px solid rgba(16, 185, 129, 0.2)',
+        background: 'rgba(0, 255, 157, 0.05)',
+        border: '1px solid rgba(0, 255, 157, 0.2)',
         padding: '3rem',
         borderRadius: '1.5rem',
-        boxShadow: '0 0 60px rgba(16, 185, 129, 0.1)',
+        boxShadow: '0 0 60px rgba(0, 255, 157, 0.1)',
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -96,7 +129,7 @@ export default function UploadPage() {
             <label style={{ cursor: 'pointer', display: 'block' }}>
               <div 
                 style={{
-                  border: dragActive ? '3px dashed #10b981' : '3px dashed rgba(16, 185, 129, 0.3)',
+                  border: dragActive ? '3px dashed #00ff9d' : '3px dashed rgba(16, 185, 129, 0.3)',
                   borderRadius: '1rem',
                   padding: '4rem 2rem',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -124,7 +157,7 @@ export default function UploadPage() {
                   width: '80px',
                   height: '80px',
                   margin: '0 auto 1.5rem',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
                   borderRadius: '1.25rem',
                   display: 'flex',
                   alignItems: 'center',
@@ -144,7 +177,7 @@ export default function UploadPage() {
                   Glissez votre fichier ici
                 </p>
                 <p style={{ 
-                  color: '#9ca3af', 
+                  color: '#8b92b0', 
                   fontSize: '1rem',
                   marginBottom: '1.5rem'
                 }}>
@@ -152,7 +185,7 @@ export default function UploadPage() {
                 </p>
                 <div style={{
                   display: 'inline-block',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
                   color: '#000',
                   padding: '0.875rem 2rem',
                   borderRadius: '0.75rem',
@@ -202,7 +235,7 @@ export default function UploadPage() {
                   width: '72px',
                   height: '72px',
                   margin: '0 auto 1rem',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                  background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
                   borderRadius: '1rem',
                   display: 'flex',
                   alignItems: 'center',
@@ -220,7 +253,7 @@ export default function UploadPage() {
                   {file.name}
                 </p>
                 <p style={{ 
-                  color: '#9ca3af', 
+                  color: '#8b92b0', 
                   fontSize: '0.95rem',
                   fontWeight: 500
                 }}>
@@ -237,7 +270,7 @@ export default function UploadPage() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.75rem',
-                    background: uploading ? '#6b7280' : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                    background: uploading ? '#6b7280' : 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
                     color: uploading ? '#d1d5db' : '#000',
                     padding: '1rem 2.5rem',
                     borderRadius: '0.875rem',
@@ -279,7 +312,7 @@ export default function UploadPage() {
                   disabled={uploading}
                   style={{
                     background: 'rgba(16, 185, 129, 0.1)',
-                    color: '#10b981',
+                    color: '#00ff9d',
                     padding: '1rem 2rem',
                     borderRadius: '0.875rem',
                     border: '1px solid rgba(16, 185, 129, 0.3)',
@@ -340,7 +373,7 @@ export default function UploadPage() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.75rem',
-                color: '#10b981',
+                color: '#00ff9d',
                 marginBottom: '0.75rem'
               }}>
                 <CheckCircle size={22} />
@@ -348,7 +381,7 @@ export default function UploadPage() {
                   Document téléchargé avec succès!
                 </span>
               </div>
-              <p style={{ color: '#34d399', fontSize: '0.95rem', marginLeft: '2rem' }}>
+              <p style={{ color: '#00d4ff', fontSize: '0.95rem', marginLeft: '2rem' }}>
                 ID: <code style={{ 
                   background: 'rgba(16, 185, 129, 0.15)', 
                   padding: '0.25rem 0.5rem', 

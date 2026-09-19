@@ -64,11 +64,11 @@ export default function HomePage() {
           position: 'relative',
           zIndex: 1
         }}>
-          <Sparkles size={16} style={{ color: '#10b981' }} />
+          <Sparkles size={16} style={{ color: '#00ff9d' }} />
           <span style={{ 
             fontSize: '0.875rem', 
             fontWeight: 700,
-            color: '#10b981',
+            color: '#00ff9d',
             letterSpacing: '0.05em',
             textTransform: 'uppercase'
           }}>
@@ -79,7 +79,7 @@ export default function HomePage() {
         <h1 style={{ 
           fontSize: '4.5rem', 
           fontWeight: 900, 
-          background: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+          background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
@@ -92,7 +92,7 @@ export default function HomePage() {
         }}>
           Analysez vos contrats<br />
           <span style={{
-            background: 'linear-gradient(135deg, #34d399 0%, #10b981 100%)',
+            background: 'linear-gradient(135deg, #00d4ff 0%, #00ff9d 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>en quelques secondes</span>
@@ -100,7 +100,7 @@ export default function HomePage() {
         
         <p style={{ 
           fontSize: '1.25rem', 
-          color: '#9ca3af',
+          color: '#8b92b0',
           maxWidth: '700px', 
           margin: '0 auto 3rem',
           lineHeight: 1.7,
@@ -119,7 +119,7 @@ export default function HomePage() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.75rem',
-              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+              background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
               color: '#000',
               padding: '1.25rem 2.75rem',
               borderRadius: '1rem',
@@ -152,7 +152,7 @@ export default function HomePage() {
               alignItems: 'center',
               gap: '0.75rem',
               background: 'rgba(16, 185, 129, 0.1)',
-              color: '#10b981',
+              color: '#00ff9d',
               padding: '1.25rem 2.75rem',
               borderRadius: '1rem',
               textDecoration: 'none',
@@ -281,7 +281,7 @@ export default function HomePage() {
         <h2 style={{ 
           fontSize: '2.5rem', 
           fontWeight: 800, 
-          background: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+          background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           marginBottom: '1rem',
@@ -293,7 +293,7 @@ export default function HomePage() {
         </h2>
         <p style={{ 
           fontSize: '1.125rem', 
-          color: '#9ca3af',
+          color: '#8b92b0',
           marginBottom: '2.5rem',
           maxWidth: '600px',
           margin: '0 auto 2.5rem',
@@ -308,7 +308,7 @@ export default function HomePage() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.75rem',
-            background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+            background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
             color: '#000',
             padding: '1.125rem 2.5rem',
             borderRadius: '1rem',
@@ -376,7 +376,7 @@ function FeatureCard({ icon, title, description }) {
       }}></div>
 
       <div style={{ 
-        background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+        background: 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
         width: '72px',
         height: '72px',
         borderRadius: '1.25rem',
@@ -403,7 +403,7 @@ function FeatureCard({ icon, title, description }) {
       }}>
         {title}
       </h3>
-      <p style={{ color: '#9ca3af', lineHeight: 1.6, fontSize: '0.95rem', position: 'relative', zIndex: 1 }}>
+      <p style={{ color: '#8b92b0', lineHeight: 1.6, fontSize: '0.95rem', position: 'relative', zIndex: 1 }}>
         {description}
       </p>
     </div>
@@ -417,14 +417,14 @@ function StatCard({ icon, value, label }) {
         display: 'flex', 
         justifyContent: 'center', 
         marginBottom: '0.75rem',
-        color: '#10b981'
+        color: '#00ff9d'
       }}>
         {icon}
       </div>
       <div style={{ 
         fontSize: '2.5rem', 
         fontWeight: 900, 
-        background: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+        background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         marginBottom: '0.5rem',
@@ -432,7 +432,7 @@ function StatCard({ icon, value, label }) {
       }}>
         {value}
       </div>
-      <div style={{ fontSize: '0.95rem', color: '#9ca3af', fontWeight: 600 }}>
+      <div style={{ fontSize: '0.95rem', color: '#8b92b0', fontWeight: 600 }}>
         {label}
       </div>
     </div>

@@ -11,25 +11,35 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #000000;
+  background: #0a0e27;
   color: #ffffff;
   overflow-x: hidden;
 }
 
 code {
   font-family: 'Fira Code', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(0, 255, 157, 0.15);
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-size: 0.9em;
-  color: #10b981;
+  color: #00ff9d;
 }
 
 #root {
   min-height: 100vh;
-  background: radial-gradient(ellipse at top, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-              radial-gradient(ellipse at bottom, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
-              #000000;
+  background: #0a0e27;
+  position: relative;
+}
+
+/* Particle Network Canvas */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Animations */
@@ -140,22 +150,22 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #0a0e27;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(180deg, #00ff9d 0%, #00d4ff 100%);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
+  background: linear-gradient(180deg, #33ffb3 0%, #33ddff 100%);
 }
 
 /* Selection */
 ::selection {
-  background: rgba(16, 185, 129, 0.3);
+  background: rgba(0, 255, 157, 0.3);
   color: #ffffff;
 }
 
@@ -163,7 +173,7 @@ code {
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #10b981;
+  outline: 2px solid #00ff9d;
   outline-offset: 2px;
 }
 
