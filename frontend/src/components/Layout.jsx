@@ -1,16 +1,16 @@
 import { Link, useLocation } from 'react-router-dom'
-import { FileText, Upload, Database, Home, Sparkles } from 'lucide-react'
+import { FileText, Upload, Database, Home, Zap } from 'lucide-react'
 
 export default function Layout({ children }) {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Navigation */}
       <nav style={{
-        background: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(226, 232, 240, 0.5)',
+        background: 'rgba(0, 0, 0, 0.8)',
+        backdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(16, 185, 129, 0.2)',
         padding: '1rem 2rem',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0 4px 30px rgba(16, 185, 129, 0.1)',
         position: 'sticky',
         top: 0,
         zIndex: 50
@@ -19,35 +19,45 @@ export default function Layout({ children }) {
           {/* Logo */}
           <Link to="/" style={{ 
             fontSize: '1.5rem', 
-            fontWeight: 800,
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+            fontWeight: 900,
+            color: '#10b981',
             textDecoration: 'none',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem',
-            letterSpacing: '-0.02em'
+            gap: '0.75rem',
+            letterSpacing: '-0.03em',
+            textShadow: '0 0 20px rgba(16, 185, 129, 0.5)'
           }}>
             <div style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              padding: '0.5rem',
+              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+              padding: '0.6rem',
               borderRadius: '0.75rem',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              boxShadow: '0 0 30px rgba(16, 185, 129, 0.4)',
+              position: 'relative'
             }}>
-              <FileText size={24} style={{ color: 'white' }} />
+              <FileText size={24} style={{ color: '#000' }} />
+              <div style={{
+                position: 'absolute',
+                inset: '-2px',
+                background: 'linear-gradient(135deg, #10b981, #059669)',
+                borderRadius: '0.875rem',
+                filter: 'blur(8px)',
+                opacity: 0.5,
+                zIndex: -1
+              }}></div>
             </div>
             ContratLens
             <span style={{ 
               fontSize: '0.75rem',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              padding: '0.125rem 0.5rem',
-              borderRadius: '0.25rem',
-              fontWeight: 600
+              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+              color: '#000',
+              padding: '0.2rem 0.6rem',
+              borderRadius: '0.375rem',
+              fontWeight: 800,
+              boxShadow: '0 0 15px rgba(16, 185, 129, 0.3)'
             }}>FR</span>
           </Link>
           
@@ -74,21 +84,69 @@ export default function Layout({ children }) {
       
       {/* Footer */}
       <footer style={{ 
-        background: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(10px)',
-        padding: '2rem 2rem',
+        background: 'rgba(0, 0, 0, 0.8)',
+        backdropFilter: 'blur(20px)',
+        padding: '2.5rem 2rem',
         textAlign: 'center',
-        color: '#64748b',
-        borderTop: '1px solid rgba(226, 232, 240, 0.5)'
+        borderTop: '1px solid rgba(16, 185, 129, 0.2)',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-            <Sparkles size={16} style={{ color: '#764ba2' }} />
-            <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>ContratLens FR</span>
+        {/* Glow effect */}
+        <div style={{
+          position: 'absolute',
+          top: '-50%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '200%',
+          height: '200%',
+          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
+          pointerEvents: 'none'
+        }}></div>
+        
+        <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative' }}>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            gap: '0.75rem', 
+            marginBottom: '1rem' 
+          }}>
+            <Zap size={20} style={{ color: '#10b981' }} />
+            <span style={{ 
+              fontWeight: 700, 
+              fontSize: '1.125rem',
+              background: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              letterSpacing: '-0.02em'
+            }}>
+              ContratLens FR
+            </span>
           </div>
-          <p style={{ fontSize: '0.875rem' }}>
-            Analyse de contrats intelligente • Propulsé par l'IA • © 2026
+          <p style={{ fontSize: '0.95rem', color: '#6b7280', marginBottom: '0.75rem', fontWeight: 500 }}>
+            Analyse de contrats intelligente • Propulsé par l'IA
           </p>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.5rem',
+            fontSize: '0.875rem',
+            color: '#4b5563'
+          }}>
+            <div style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: '#10b981',
+              boxShadow: '0 0 10px rgba(16, 185, 129, 0.6)',
+              animation: 'pulse 2s ease-in-out infinite'
+            }}></div>
+            <span>Système opérationnel</span>
+            <span>•</span>
+            <span>© 2026</span>
+          </div>
         </div>
       </footer>
     </div>
@@ -103,33 +161,49 @@ function NavLink({ to, icon, children }) {
     <Link
       to={to}
       style={{
-        color: isActive ? '#667eea' : '#64748b',
+        color: isActive ? '#10b981' : '#9ca3af',
         textDecoration: 'none',
         display: 'flex',
         alignItems: 'center',
         gap: '0.5rem',
         padding: '0.625rem 1.25rem',
         borderRadius: '0.75rem',
-        fontWeight: isActive ? 600 : 500,
+        fontWeight: isActive ? 700 : 500,
         fontSize: '0.95rem',
-        background: isActive ? 'rgba(102, 126, 234, 0.1)' : 'transparent',
-        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+        background: isActive ? 'rgba(16, 185, 129, 0.15)' : 'transparent',
+        border: isActive ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid transparent',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        position: 'relative'
       }}
       onMouseEnter={(e) => {
         if (!isActive) {
-          e.currentTarget.style.background = 'rgba(100, 116, 139, 0.08)'
-          e.currentTarget.style.color = '#334155'
+          e.currentTarget.style.background = 'rgba(16, 185, 129, 0.08)'
+          e.currentTarget.style.color = '#10b981'
+          e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.2)'
         }
       }}
       onMouseLeave={(e) => {
         if (!isActive) {
           e.currentTarget.style.background = 'transparent'
-          e.currentTarget.style.color = '#64748b'
+          e.currentTarget.style.color = '#9ca3af'
+          e.currentTarget.style.borderColor = 'transparent'
         }
       }}
     >
       {icon}
       {children}
+      {isActive && (
+        <div style={{
+          position: 'absolute',
+          bottom: '-1px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '60%',
+          height: '2px',
+          background: 'linear-gradient(90deg, transparent, #10b981, transparent)',
+          boxShadow: '0 0 10px rgba(16, 185, 129, 0.6)'
+        }}></div>
+      )}
     </Link>
   )
 }
