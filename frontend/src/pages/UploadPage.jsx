@@ -72,10 +72,10 @@ export default function UploadPage() {
           }}>
             Configuration requise
           </h3>
-          <p style={{ color: '#8b92b0', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '0.75rem' }}>
+          <p style={{ color: '#b0b0b0', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '0.75rem' }}>
             Pour analyser vos documents, vous devez configurer une clé API LLM:
           </p>
-          <ul style={{ color: '#8b92b0', fontSize: '0.9rem', lineHeight: 1.7, paddingLeft: '1.5rem', margin: 0 }}>
+          <ul style={{ color: '#b0b0b0', fontSize: '0.9rem', lineHeight: 1.7, paddingLeft: '1.5rem', margin: 0 }}>
             <li><strong style={{ color: '#00ff9d' }}>OpenAI:</strong> Ajoutez <code>OPENAI_API_KEY</code> dans <code>backend/.env</code></li>
             <li><strong style={{ color: '#00ff9d' }}>Google AI:</strong> Ajoutez <code>GOOGLE_API_KEY</code> dans <code>backend/.env</code></li>
             <li><strong style={{ color: '#00ff9d' }}>Ollama (Local):</strong> Installez et démarrez Ollama localement (gratuit)</li>
@@ -96,7 +96,7 @@ export default function UploadPage() {
         }}>
           Télécharger un Contrat
         </h1>
-        <p style={{ fontSize: '1.125rem', color: '#8b92b0' }}>
+        <p style={{ fontSize: '1.125rem', color: '#b0b0b0' }}>
           Importez votre contrat PDF ou DOCX pour commencer l'analyse
         </p>
       </div>
@@ -177,7 +177,7 @@ export default function UploadPage() {
                   Glissez votre fichier ici
                 </p>
                 <p style={{ 
-                  color: '#8b92b0', 
+                  color: '#b0b0b0', 
                   fontSize: '1rem',
                   marginBottom: '1.5rem'
                 }}>
@@ -206,7 +206,7 @@ export default function UploadPage() {
                   Sélectionner un fichier
                 </div>
                 <p style={{ 
-                  color: '#6b7280', 
+                  color: '#909090', 
                   fontSize: '0.875rem',
                   marginTop: '1.5rem',
                   fontWeight: 500
@@ -253,7 +253,7 @@ export default function UploadPage() {
                   {file.name}
                 </p>
                 <p style={{ 
-                  color: '#8b92b0', 
+                  color: '#b0b0b0', 
                   fontSize: '0.95rem',
                   fontWeight: 500
                 }}>
@@ -270,7 +270,7 @@ export default function UploadPage() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.75rem',
-                    background: uploading ? '#6b7280' : 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
+                    background: uploading ? '#909090' : 'linear-gradient(135deg, #00ff9d 0%, #00d4aa 100%)',
                     color: uploading ? '#d1d5db' : '#000',
                     padding: '1rem 2.5rem',
                     borderRadius: '0.875rem',

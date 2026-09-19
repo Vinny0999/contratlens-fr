@@ -100,7 +100,7 @@ export default function HomePage() {
         
         <p style={{ 
           fontSize: '1.25rem', 
-          color: '#8b92b0',
+          color: '#b0b0b0',
           maxWidth: '700px', 
           margin: '0 auto 3rem',
           lineHeight: 1.7,
@@ -293,7 +293,7 @@ export default function HomePage() {
         </h2>
         <p style={{ 
           fontSize: '1.125rem', 
-          color: '#8b92b0',
+          color: '#b0b0b0',
           marginBottom: '2.5rem',
           maxWidth: '600px',
           margin: '0 auto 2.5rem',
@@ -403,7 +403,7 @@ function FeatureCard({ icon, title, description }) {
       }}>
         {title}
       </h3>
-      <p style={{ color: '#8b92b0', lineHeight: 1.6, fontSize: '0.95rem', position: 'relative', zIndex: 1 }}>
+      <p style={{ color: '#b0b0b0', lineHeight: 1.6, fontSize: '0.95rem', position: 'relative', zIndex: 1 }}>
         {description}
       </p>
     </div>
@@ -432,7 +432,7 @@ function StatCard({ icon, value, label }) {
       }}>
         {value}
       </div>
-      <div style={{ fontSize: '0.95rem', color: '#8b92b0', fontWeight: 600 }}>
+      <div style={{ fontSize: '0.95rem', color: '#b0b0b0', fontWeight: 600 }}>
         {label}
       </div>
     </div>

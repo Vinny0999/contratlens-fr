@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       
       {/* Navigation */}
       <nav style={{
-        background: 'rgba(10, 14, 39, 0.8)',
+        background: 'rgba(5, 8, 17, 0.9)',
         backdropFilter: 'blur(20px)',
         borderBottom: '1px solid rgba(0, 255, 157, 0.1)',
         padding: '1rem 2rem',
@@ -57,7 +57,7 @@ export default function Layout({ children }) {
             <span style={{ 
               fontSize: '0.75rem',
               background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
-              color: '#0a0e27',
+              color: '#050811',
               padding: '0.2rem 0.6rem',
               borderRadius: '0.375rem',
               fontWeight: 800,
@@ -90,7 +90,7 @@ export default function Layout({ children }) {
       
       {/* Footer */}
       <footer style={{ 
-        background: 'rgba(10, 14, 39, 0.8)',
+        background: 'rgba(5, 8, 17, 0.9)',
         backdropFilter: 'blur(20px)',
         padding: '2.5rem 2rem',
         textAlign: 'center',
@@ -131,7 +131,7 @@ export default function Layout({ children }) {
               ContratLens FR
             </span>
           </div>
-          <p style={{ fontSize: '0.95rem', color: '#8b92b0', marginBottom: '0.75rem', fontWeight: 500 }}>
+          <p style={{ fontSize: '0.95rem', color: '#a0a0a0', marginBottom: '0.75rem', fontWeight: 500 }}>
             Analyse de contrats intelligente • Propulsé par l'IA
           </p>
           <div style={{
@@ -140,7 +140,7 @@ export default function Layout({ children }) {
             justifyContent: 'center',
             gap: '0.5rem',
             fontSize: '0.875rem',
-            color: '#6b7199'
+            color: '#808080'
           }}>
             <div style={{
               width: '6px',
@@ -168,7 +168,7 @@ function NavLink({ to, icon, children }) {
     <Link
       to={to}
       style={{
-        color: isActive ? '#00ff9d' : '#8b92b0',
+        color: isActive ? '#00ff9d' : '#b0b0b0',
         textDecoration: 'none',
         display: 'flex',
         alignItems: 'center',
@@ -192,7 +192,7 @@ function NavLink({ to, icon, children }) {
       onMouseLeave={(e) => {
         if (!isActive) {
           e.currentTarget.style.background = 'transparent'
-          e.currentTarget.style.color = '#8b92b0'
+          e.currentTarget.style.color = '#b0b0b0'
           e.currentTarget.style.borderColor = 'transparent'
         }
       }}

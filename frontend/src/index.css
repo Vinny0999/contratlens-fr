@@ -11,7 +11,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0a0e27;
+  background: #050811;
   color: #ffffff;
   overflow-x: hidden;
 }
@@ -27,7 +27,7 @@ code {
 
 #root {
   min-height: 100vh;
-  background: #0a0e27;
+  background: #050811;
   position: relative;
 }
 
@@ -150,7 +150,7 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0e27;
+  background: #050811;
   border-radius: 5px;
 }
 
