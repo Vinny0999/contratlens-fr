@@ -1,0 +1,20 @@
+# Backend (runs locally, not deployed to Vercel)
+backend/
+data/
+demo-documents/
+docs/
+
+# Python files
+*.pyc
+__pycache__/
+venv/
+*.egg-info/
+
+# Environment files
+.env
+.env.local
+
+# Development files
+node_modules/
+.DS_Store
+*.log
