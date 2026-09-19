@@ -92,37 +92,24 @@ export default function Layout({ children }) {
       <footer style={{ 
         background: 'rgba(5, 8, 17, 0.9)',
         backdropFilter: 'blur(20px)',
-        padding: '2.5rem 2rem',
+        padding: '1.5rem 2rem',
         textAlign: 'center',
         borderTop: '1px solid rgba(0, 255, 157, 0.1)',
         position: 'relative',
-        overflow: 'hidden',
         zIndex: 10
       }}>
-        {/* Glow effect */}
-        <div style={{
-          position: 'absolute',
-          top: '-50%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '200%',
-          height: '200%',
-          background: 'radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%)',
-          pointerEvents: 'none'
-        }}></div>
-        
         <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative' }}>
           <div style={{ 
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center', 
             gap: '0.75rem', 
-            marginBottom: '1rem' 
+            marginBottom: '0.5rem' 
           }}>
-            <Zap size={20} style={{ color: '#00ff9d' }} />
+            <Zap size={18} style={{ color: '#00ff9d' }} />
             <span style={{ 
               fontWeight: 700, 
-              fontSize: '1.125rem',
+              fontSize: '1rem',
               background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -131,7 +118,7 @@ export default function Layout({ children }) {
               ContratLens FR
             </span>
           </div>
-          <p style={{ fontSize: '0.95rem', color: '#a0a0a0', marginBottom: '0.75rem', fontWeight: 500 }}>
+          <p style={{ fontSize: '0.875rem', color: '#a0a0a0', marginBottom: '0.5rem', fontWeight: 500 }}>
             Analyse de contrats intelligente • Propulsé par l'IA
           </p>
           <div style={{
@@ -139,7 +126,7 @@ export default function Layout({ children }) {
             alignItems: 'center',
             justifyContent: 'center',
             gap: '0.5rem',
-            fontSize: '0.875rem',
+            fontSize: '0.8125rem',
             color: '#808080'
           }}>
             <div style={{
