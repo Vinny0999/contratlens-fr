@@ -23,47 +23,87 @@ export default function DocumentsPage() {
   }
 
   if (loading) {
-    return <div style={{ textAlign: 'center', padding: '2rem' }}>Chargement...</div>
+    return (
+      <div style={{ 
+        textAlign: 'center', 
+        padding: '4rem 2rem',
+        color: '#b0b0b0'
+      }}>
+        <RefreshCw size={48} style={{ 
+          color: '#00ff9d', 
+          animation: 'spin 1s linear infinite',
+          margin: '0 auto 1rem'
+        }} />
+        <p>Chargement des documents...</p>
+      </div>
+    )
   }
 
   return (
-    <div>
-      <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1e293b' }}>
-        Mes Documents
-      </h1>
-      <p style={{ color: '#64748b', marginBottom: '2rem' }}>
-        {documents.length} document(s) téléchargé(s)
-      </p>
+    <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
+      <div style={{ marginBottom: '2rem' }}>
+        <h1 style={{ 
+          fontSize: '2.5rem', 
+          fontWeight: 900, 
+          marginBottom: '0.75rem',
+          background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          letterSpacing: '-0.02em'
+        }}>
+          Mes Documents
+        </h1>
+        <p style={{ color: '#b0b0b0', fontSize: '1.0625rem' }}>
+          {documents.length} document(s) téléchargé(s)
+        </p>
+      </div>
 
       {documents.length === 0 ? (
         <div style={{
-          background: 'white',
-          padding: '3rem',
-          borderRadius: '0.75rem',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-          textAlign: 'center'
+          background: 'rgba(0, 255, 157, 0.05)',
+          border: '1px solid rgba(0, 255, 157, 0.2)',
+          padding: '4rem 3rem',
+          borderRadius: '1.5rem',
+          textAlign: 'center',
+          boxShadow: '0 0 60px rgba(0, 255, 157, 0.1)'
         }}>
-          <FileText size={48} style={{ color: '#cbd5e1', margin: '0 auto 1rem' }} />
-          <p style={{ color: '#64748b', marginBottom: '1.5rem' }}>
+          <FileText size={64} style={{ color: '#00ff9d', margin: '0 auto 1.5rem', opacity: 0.5 }} />
+          <p style={{ color: '#ffffff', marginBottom: '0.5rem', fontSize: '1.25rem', fontWeight: 600 }}>
             Aucun document téléchargé
+          </p>
+          <p style={{ color: '#b0b0b0', marginBottom: '2rem' }}>
+            Commencez par télécharger un contrat pour l'analyser
           </p>
           <Link
             to="/upload"
             style={{
-              display: 'inline-block',
-              background: '#3b82f6',
-              color: 'white',
-              padding: '0.75rem 1.5rem',
-              borderRadius: '0.5rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
+              color: '#050811',
+              padding: '0.875rem 2rem',
+              borderRadius: '0.75rem',
               textDecoration: 'none',
-              fontWeight: '600'
+              fontWeight: 700,
+              boxShadow: '0 0 30px rgba(0, 255, 157, 0.4)',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 0 40px rgba(0, 255, 157, 0.6)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 255, 157, 0.4)'
             }}
           >
+            <FileText size={20} />
             Télécharger un document
           </Link>
         </div>
       ) : (
-        <div style={{ display: 'grid', gap: '1rem' }}>
+        <div style={{ display: 'grid', gap: '1.25rem' }}>
           {documents.map((doc) => (
             <DocumentCard key={doc.id} document={doc} onIndexed={fetchDocuments} />
           ))}
@@ -79,8 +119,8 @@ function DocumentCard({ document, onIndexed }) {
 
   const statusColors = {
     uploaded: '#f59e0b',
-    processing: '#3b82f6',
-    indexed: '#10b981',
+    processing: '#00d4ff',
+    indexed: '#00ff9d',
     failed: '#ef4444',
   }
 
@@ -115,51 +155,125 @@ function DocumentCard({ document, onIndexed }) {
 
   return (
     <div style={{
-      background: 'white',
+      background: 'rgba(0, 255, 157, 0.05)',
+      border: '1px solid rgba(0, 255, 157, 0.2)',
       padding: '1.5rem',
-      borderRadius: '0.75rem',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+      borderRadius: '1.25rem',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       flexWrap: 'wrap',
-      gap: '1rem'
+      gap: '1.25rem',
+      boxShadow: '0 0 30px rgba(0, 255, 157, 0.1)',
+      transition: 'all 0.3s',
+      position: 'relative',
+      overflow: 'hidden'
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.borderColor = 'rgba(0, 255, 157, 0.4)'
+      e.currentTarget.style.boxShadow = '0 0 50px rgba(0, 255, 157, 0.2)'
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.borderColor = 'rgba(0, 255, 157, 0.2)'
+      e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 255, 157, 0.1)'
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1 }}>
-        <FileText size={32} style={{ color: '#3b82f6', flexShrink: 0 }} />
+      {/* Glow effect */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '-50px',
+        transform: 'translateY(-50%)',
+        width: '100px',
+        height: '100px',
+        background: 'radial-gradient(circle, rgba(0, 255, 157, 0.15) 0%, transparent 70%)',
+        filter: 'blur(30px)',
+        pointerEvents: 'none'
+      }}></div>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flex: 1, minWidth: '250px', position: 'relative' }}>
+        <div style={{
+          background: 'linear-gradient(135deg, #00ff9d 0%, #00d4ff 100%)',
+          padding: '0.875rem',
+          borderRadius: '0.875rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 0 20px rgba(0, 255, 157, 0.3)',
+          flexShrink: 0
+        }}>
+          <FileText size={28} style={{ color: '#050811' }} />
+        </div>
         <div>
-          <h3 style={{ fontWeight: '600', marginBottom: '0.25rem', color: '#1e293b' }}>
+          <h3 style={{ 
+            fontWeight: 700, 
+            marginBottom: '0.5rem', 
+            color: '#ffffff',
+            fontSize: '1.0625rem'
+          }}>
             {document.filename}
           </h3>
-          <p style={{ fontSize: '0.875rem', color: '#64748b' }}>
-            {document.doc_type} •{' '}
-            <span style={{ color: statusColors[document.status] || '#64748b', fontWeight: 600 }}>
+          <div style={{ 
+            fontSize: '0.875rem', 
+            color: '#b0b0b0',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            flexWrap: 'wrap'
+          }}>
+            <span style={{ 
+              textTransform: 'capitalize',
+              color: '#909090'
+            }}>
+              {document.doc_type}
+            </span>
+            <span>•</span>
+            <span style={{ 
+              color: statusColors[document.status] || '#b0b0b0', 
+              fontWeight: 700,
+              textTransform: 'capitalize'
+            }}>
               {document.status}
             </span>
-            {document.num_pages && ` • ${document.num_pages} pages`}
-            {' • '}{new Date(document.upload_date).toLocaleDateString('fr-FR')}
-          </p>
-          {error && <p style={{ fontSize: '0.8rem', color: '#ef4444', marginTop: '0.25rem' }}>{error}</p>}
+            {document.num_pages && (
+              <>
+                <span>•</span>
+                <span>{document.num_pages} pages</span>
+              </>
+            )}
+            <span>•</span>
+            <span>{new Date(document.upload_date).toLocaleDateString('fr-FR')}</span>
+          </div>
+          {error && (
+            <p style={{ fontSize: '0.8125rem', color: '#ef4444', marginTop: '0.5rem', fontWeight: 600 }}>
+              {error}
+            </p>
+          )}
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', position: 'relative' }}>
         {!isIndexed && !isProcessing && (
           <button
             onClick={handleIndex}
-            disabled={isProcessing}
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
-              padding: '0.5rem 1rem',
-              background: isFailed ? '#ef4444' : '#f59e0b',
-              color: 'white',
-              borderRadius: '0.375rem',
-              border: 'none',
+              padding: '0.625rem 1.25rem',
+              background: isFailed ? 'rgba(239, 68, 68, 0.15)' : 'rgba(245, 158, 11, 0.15)',
+              color: isFailed ? '#ef4444' : '#f59e0b',
+              border: `1px solid ${isFailed ? 'rgba(239, 68, 68, 0.3)' : 'rgba(245, 158, 11, 0.3)'}`,
+              borderRadius: '0.625rem',
               fontSize: '0.875rem',
-              fontWeight: '600',
-              cursor: 'pointer'
+              fontWeight: 700,
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = isFailed ? 'rgba(239, 68, 68, 0.25)' : 'rgba(245, 158, 11, 0.25)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = isFailed ? 'rgba(239, 68, 68, 0.15)' : 'rgba(245, 158, 11, 0.15)'
             }}
           >
             <RefreshCw size={16} />
@@ -172,12 +286,13 @@ function DocumentCard({ document, onIndexed }) {
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            background: '#e0f2fe',
-            color: '#0369a1',
-            borderRadius: '0.375rem',
+            padding: '0.625rem 1.25rem',
+            background: 'rgba(0, 212, 255, 0.15)',
+            color: '#00d4ff',
+            border: '1px solid rgba(0, 212, 255, 0.3)',
+            borderRadius: '0.625rem',
             fontSize: '0.875rem',
-            fontWeight: '600'
+            fontWeight: 700
           }}>
             <RefreshCw size={16} style={{ animation: 'spin 1s linear infinite' }} />
             Indexation...
@@ -190,14 +305,26 @@ function DocumentCard({ document, onIndexed }) {
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            background: isIndexed ? '#3b82f6' : '#cbd5e1',
-            color: 'white',
-            borderRadius: '0.375rem',
+            padding: '0.625rem 1.25rem',
+            background: isIndexed ? 'rgba(0, 212, 255, 0.15)' : 'rgba(128, 128, 128, 0.15)',
+            color: isIndexed ? '#00d4ff' : '#808080',
+            border: `1px solid ${isIndexed ? 'rgba(0, 212, 255, 0.3)' : 'rgba(128, 128, 128, 0.3)'}`,
+            borderRadius: '0.625rem',
             textDecoration: 'none',
             fontSize: '0.875rem',
-            fontWeight: '600',
-            pointerEvents: isIndexed ? 'auto' : 'none'
+            fontWeight: 700,
+            pointerEvents: isIndexed ? 'auto' : 'none',
+            transition: 'all 0.3s'
+          }}
+          onMouseEnter={(e) => {
+            if (isIndexed) {
+              e.currentTarget.style.background = 'rgba(0, 212, 255, 0.25)'
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (isIndexed) {
+              e.currentTarget.style.background = 'rgba(0, 212, 255, 0.15)'
+            }
           }}
         >
           <MessageSquare size={16} />
@@ -210,14 +337,26 @@ function DocumentCard({ document, onIndexed }) {
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            background: isIndexed ? '#10b981' : '#cbd5e1',
-            color: 'white',
-            borderRadius: '0.375rem',
+            padding: '0.625rem 1.25rem',
+            background: isIndexed ? 'rgba(0, 255, 157, 0.15)' : 'rgba(128, 128, 128, 0.15)',
+            color: isIndexed ? '#00ff9d' : '#808080',
+            border: `1px solid ${isIndexed ? 'rgba(0, 255, 157, 0.3)' : 'rgba(128, 128, 128, 0.3)'}`,
+            borderRadius: '0.625rem',
             textDecoration: 'none',
             fontSize: '0.875rem',
-            fontWeight: '600',
-            pointerEvents: isIndexed ? 'auto' : 'none'
+            fontWeight: 700,
+            pointerEvents: isIndexed ? 'auto' : 'none',
+            transition: 'all 0.3s'
+          }}
+          onMouseEnter={(e) => {
+            if (isIndexed) {
+              e.currentTarget.style.background = 'rgba(0, 255, 157, 0.25)'
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (isIndexed) {
+              e.currentTarget.style.background = 'rgba(0, 255, 157, 0.15)'
+            }
           }}
         >
           <FileSearch size={16} />
