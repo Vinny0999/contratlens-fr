@@ -9,6 +9,11 @@ langchain-community==0.0.19
 sentence-transformers==2.3.1
 ollama==0.1.6
 
+# API Providers (install the one you need)
+google-generativeai>=0.3.0
+openai>=1.0.0
+anthropic>=0.7.0
+
 # Vector Database
 chromadb==0.4.22
 

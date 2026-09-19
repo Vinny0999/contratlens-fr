@@ -11,6 +11,12 @@ class Settings(BaseSettings):
     DEBUG: bool = True
     
     # LLM Configuration
+    LLM_PROVIDER: str = "google"  # Options: "google", "openai", "anthropic"
+    GOOGLE_API_KEY: str = ""
+    OPENAI_API_KEY: str = ""
+    ANTHROPIC_API_KEY: str = ""
+    
+    # Ollama Configuration (fallback)
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     OLLAMA_MODEL: str = "qwen2.5:7b"
     
