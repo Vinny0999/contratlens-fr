@@ -36,13 +36,25 @@ export default function UploadPage() {
 
     try {
       const response = await axios.post('http://localhost:8000/api/v1/documents/upload', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
+        headers: { 'Content-Type': 'multipart/form-data' },
+        timeout: 30000 // 30 second timeout
       })
       
       setResult(response.data)
       setFile(null)
     } catch (err) {
-      setError(err.response?.data?.detail || 'Erreur lors du téléchargement')
+      console.error('Upload error:', err)
+      
+      if (err.code === 'ECONNABORTED' || err.code === 'ETIMEDOUT') {
+        setError('Timeout: Le serveur backend ne répond pas')
+      } else if (err.code === 'ERR_NETWORK' || err.message?.includes('Network Error')) {
+        setError('Erreur réseau: Vérifiez que le backend est démarré (http://localhost:8000)')
+      } else if (err.response) {
+        // Server responded with error
+        setError(err.response?.data?.detail || `Erreur serveur: ${err.response.status}`)
+      } else {
+        setError('Erreur lors du téléchargement: ' + (err.message || 'Erreur inconnue'))
+      }
     } finally {
       setUploading(false)
     }

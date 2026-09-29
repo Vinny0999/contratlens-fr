@@ -34,6 +34,7 @@ class LLMService:
     
     def __init__(self, provider: str = None):
         self.provider = provider or settings.LLM_PROVIDER
+        self.client = None
         self._init_provider()
     
     def _init_provider(self):
@@ -41,18 +42,24 @@ class LLMService:
         if self.provider == "google":
             if not GOOGLE_AVAILABLE:
                 raise ImportError("google-generativeai not installed. Run: pip install google-generativeai")
+            if not settings.GOOGLE_API_KEY or settings.GOOGLE_API_KEY == "your-google-api-key-here":
+                raise ValueError("GOOGLE_API_KEY not configured in .env file")
             genai.configure(api_key=settings.GOOGLE_API_KEY)
             self.client = genai.GenerativeModel("gemini-pro")
         
         elif self.provider == "openai":
             if not OPENAI_AVAILABLE:
                 raise ImportError("openai not installed. Run: pip install openai")
+            if not settings.OPENAI_API_KEY:
+                raise ValueError("OPENAI_API_KEY not configured in .env file")
             self.client = OpenAI(api_key=settings.OPENAI_API_KEY)
             self.model = "gpt-3.5-turbo"
         
         elif self.provider == "anthropic":
             if not ANTHROPIC_AVAILABLE:
                 raise ImportError("anthropic not installed. Run: pip install anthropic")
+            if not settings.ANTHROPIC_API_KEY:
+                raise ValueError("ANTHROPIC_API_KEY not configured in .env file")
             self.client = Anthropic(api_key=settings.ANTHROPIC_API_KEY)
             self.model = "claude-3-haiku-20240307"
         
@@ -61,6 +68,14 @@ class LLMService:
                 raise ImportError("ollama not installed. Run: pip install ollama")
             self.model = settings.OLLAMA_MODEL
             self.base_url = settings.OLLAMA_BASE_URL
+            # Test connection
+            try:
+                import requests
+                response = requests.get(f"{self.base_url}/api/tags", timeout=2)
+                if response.status_code != 200:
+                    raise ConnectionError(f"Ollama service not responding at {self.base_url}")
+            except requests.exceptions.RequestException as e:
+                raise ConnectionError(f"Cannot connect to Ollama at {self.base_url}. Make sure Ollama is running: ollama serve")
         
         else:
             raise ValueError(f"Unknown LLM provider: {self.provider}")

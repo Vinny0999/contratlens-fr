@@ -89,19 +89,6 @@ npm run dev
 
 Frontend will be available at: http://localhost:5173
 
-### 4. Using Docker Compose (Alternative)
-
-```bash
-# Start all services
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop services
-docker-compose down
-```
-
 ## 📁 Project Structure
 
 ```
@@ -229,6 +216,14 @@ npm test
 ## 📄 License
 
 MIT License - See LICENSE file for details
+
+## 📚 Documentation
+
+- **[docs/QUICKFIX.md](docs/QUICKFIX.md)** - Quick setup and troubleshooting guide
+- **[docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md)** - Detailed architecture
+- **Backend Tools:**
+  - `backend/check_config.py` - Configuration validator
+  - `backend/test-backend.sh` - Backend connectivity test
 
 ## 🤝 Contributing
 

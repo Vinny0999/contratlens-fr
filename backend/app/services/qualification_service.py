@@ -1,19 +1,19 @@
 from typing import Dict, List
 from loguru import logger
-import ollama
 from app.core.config import settings
 from app.models.analysis import (
     AnalysisResult, ContractNeed, Deliverable,
     RiskClause, MandatoryDocument
 )
+from app.services.llm_service import LLMService
 import json
 
 
 class QualificationService:
     """Service for structured contract qualification and analysis."""
     
-    def __init__(self, model: str = None):
-        self.model = model or settings.OLLAMA_MODEL
+    def __init__(self):
+        self.llm_service = LLMService()
     
     def analyze_contract(self, document_text: str, document_id: str) -> AnalysisResult:
         """Run full contract analysis."""
@@ -60,8 +60,16 @@ Contrat:
 
 Résumé:"""
         
-        response = ollama.generate(model=self.model, prompt=prompt)
-        return response['response'].strip()
+        try:
+            result = self.llm_service.generate_answer(
+                question=prompt,
+                context_chunks=[],
+                conversation_history=[]
+            )
+            return result['answer'].strip()
+        except Exception as e:
+            logger.error(f"Error generating summary: {str(e)}")
+            return "Résumé non disponible - erreur lors de l'analyse."
     
     def _extract_contract_type(self, text: str) -> str:
         """Extract contract type."""
@@ -73,8 +81,16 @@ Contrat:
 
 Type (un seul mot):"""
         
-        response = ollama.generate(model=self.model, prompt=prompt)
-        return response['response'].strip()
+        try:
+            result = self.llm_service.generate_answer(
+                question=prompt,
+                context_chunks=[],
+                conversation_history=[]
+            )
+            return result['answer'].strip()
+        except Exception as e:
+            logger.error(f"Error extracting contract type: {str(e)}")
+            return "Type non identifié"
     
     def _extract_scope(self, text: str) -> str:
         """Extract scope of work."""
@@ -85,8 +101,16 @@ Contrat:
 
 Périmètre:"""
         
-        response = ollama.generate(model=self.model, prompt=prompt)
-        return response['response'].strip()
+        try:
+            result = self.llm_service.generate_answer(
+                question=prompt,
+                context_chunks=[],
+                conversation_history=[]
+            )
+            return result['answer'].strip()
+        except Exception as e:
+            logger.error(f"Error extracting scope: {str(e)}")
+            return "Périmètre non disponible"
     
     def _extract_needs(self, text: str) -> List[ContractNeed]:
         """Extract contract needs."""
