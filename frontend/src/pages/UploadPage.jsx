@@ -327,12 +327,12 @@ export default function UploadPage() {
                   {uploading ? (
                     <>
                       <Loader2 size={window.innerWidth < 640 ? 18 : 20} style={{ animation: 'spin 1s linear infinite' }} />
-                      Téléchargement...
+                      Téléversement...
                     </>
                   ) : (
                     <>
                       <Upload size={window.innerWidth < 640 ? 18 : 20} />
-                      Télécharger
+                      Téléverser
                     </>
                   )}
                 </button>
@@ -408,7 +408,7 @@ export default function UploadPage() {
               }}>
                 <CheckCircle size={22} />
                 <span style={{ fontWeight: 700, fontSize: '1.0625rem' }}>
-                  Document téléchargé avec succès!
+                  Document téléversé avec succès!
                 </span>
               </div>
               <p style={{ color: '#00d4ff', fontSize: '0.95rem', marginLeft: '2rem' }}>

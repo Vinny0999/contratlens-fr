@@ -45,7 +45,7 @@ class LLMService:
             if not settings.GOOGLE_API_KEY or settings.GOOGLE_API_KEY == "your-google-api-key-here":
                 raise ValueError("GOOGLE_API_KEY not configured in .env file")
             genai.configure(api_key=settings.GOOGLE_API_KEY)
-            self.client = genai.GenerativeModel("gemini-pro")
+            self.client = genai.GenerativeModel("gemini-3.8-flash")
         
         elif self.provider == "openai":
             if not OPENAI_AVAILABLE:
