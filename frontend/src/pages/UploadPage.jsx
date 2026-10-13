@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Upload, FileText, CheckCircle, AlertCircle, Loader2, Info, Key } from 'lucide-react'
+import { Upload, FileText, CheckCircle, AlertCircle, Loader2, Info, Key, Github } from 'lucide-react'
 import axios from 'axios'
 
 export default function UploadPage() {
@@ -62,6 +62,58 @@ export default function UploadPage() {
 
   return (
     <div className="upload-container scroll-animate" style={{ maxWidth: '900px', margin: '0 auto' }}>
+      {/* Demo Warning */}
+      <div style={{
+        background: 'rgba(251, 191, 36, 0.1)',
+        border: '1px solid rgba(251, 191, 36, 0.3)',
+        borderRadius: '1rem',
+        padding: 'clamp(1rem, 3vw, 1.25rem) clamp(1rem, 4vw, 1.5rem)',
+        marginBottom: 'clamp(1.5rem, 4vw, 2rem)',
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: 'clamp(0.75rem, 2vw, 1rem)',
+        animation: 'fadeIn 0.5s ease-out',
+        flexWrap: 'wrap'
+      }}>
+        <Info size={window.innerWidth < 640 ? 20 : 24} style={{ color: '#fbbf24', flexShrink: 0, marginTop: '0.125rem' }} />
+        <div style={{ flex: 1, minWidth: '200px' }}>
+          <h3 style={{ 
+            color: '#fbbf24', 
+            fontSize: 'clamp(0.95rem, 2.5vw, 1.0625rem)', 
+            fontWeight: 700,
+            marginBottom: '0.5rem'
+          }}>
+            Mode Démo
+          </h3>
+          <p style={{ 
+            color: '#b0b0b0', 
+            fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', 
+            lineHeight: 1.6, 
+            marginBottom: '0.75rem' 
+          }}>
+            Cet environnement est une démonstration. Pour une utilisation complète, veuillez cloner ce projet GitHub et exécuter le backend localement :
+          </p>
+          <a href="https://github.com/Vinny0999/contratlens-fr" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             style={{
+               display: 'inline-flex',
+               alignItems: 'center',
+               gap: '0.5rem',
+               background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+               color: '#000',
+               padding: '0.5rem 1rem',
+               borderRadius: '0.5rem',
+               fontWeight: 700,
+               fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
+               textDecoration: 'none'
+             }}>
+            <Github size={window.innerWidth < 640 ? 16 : 18} />
+            Voir sur GitHub
+          </a>
+        </div>
+      </div>
+      
       {/* API Key Reminder */}
       <div style={{
         background: 'rgba(0, 212, 255, 0.1)',
@@ -118,7 +170,7 @@ export default function UploadPage() {
           WebkitTextFillColor: 'transparent',
           letterSpacing: '-0.02em'
         }}>
-          Télécharger un Contrat
+          Téléverser un Contrat
         </h1>
         <p style={{ 
           fontSize: 'clamp(0.95rem, 3vw, 1.125rem)', 
